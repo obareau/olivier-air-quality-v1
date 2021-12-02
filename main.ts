@@ -1,7 +1,7 @@
 input.onButtonPressed(Button.A, function () {
     kitronik_air_quality.clear()
     kitronik_air_quality.measureData()
-    kitronik_air_quality.show("Air Quality Board")
+    kitronik_air_quality.show("Angie's Meteo Board")
     kitronik_air_quality.show("Temperature - :" + kitronik_air_quality.readTemperature(kitronik_air_quality.TemperatureUnitList.C) + " C", 2)
     kitronik_air_quality.show("Pressure ---- :" + kitronik_air_quality.readPressure(kitronik_air_quality.PressureUnitList.Pa) + " Pa", 3)
     kitronik_air_quality.show("Humidity ---- :" + kitronik_air_quality.readHumidity() + " %", 4)
