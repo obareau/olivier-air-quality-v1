@@ -1,24 +1,24 @@
-input.onButtonPressed(Button.A, function on_button_pressed_a() {
-    basic.showString("" + ("" + input.temperature()) + "C")
+input.onButtonPressed(Button.A, function () {
+    basic.showString("" + input.temperature() + "C")
     kitronik_air_quality.clear()
     kitronik_air_quality.measureData()
     kitronik_air_quality.show("Angie's Meteo Board")
-    kitronik_air_quality.show("Temperature - :" + ("" + ("" + kitronik_air_quality.readTemperature(kitronik_air_quality.TemperatureUnitList.C))) + " C", 2)
-    kitronik_air_quality.show("Pressure ---- :" + ("" + ("" + kitronik_air_quality.readPressure(kitronik_air_quality.PressureUnitList.Pa))) + " Pa", 3)
-    kitronik_air_quality.show("Humidity ---- :" + ("" + ("" + kitronik_air_quality.readHumidity())) + " %", 4)
-    kitronik_air_quality.show("IAQ Score --> " + ("" + ("" + kitronik_air_quality.getAirQualityScore())), 6)
-    kitronik_air_quality.show("IAQ %     --> " + ("" + ("" + kitronik_air_quality.getAirQualityPercent())), 7)
-    kitronik_air_quality.show("eCo2      -->  " + ("" + ("" + kitronik_air_quality.readeCO2())), 8)
+    kitronik_air_quality.show("Temperature - :" + ("" + kitronik_air_quality.readTemperature(kitronik_air_quality.TemperatureUnitList.C)) + " C", 2)
+    kitronik_air_quality.show("Pressure ---- :" + ("" + kitronik_air_quality.readPressure(kitronik_air_quality.PressureUnitList.Pa)) + " Pa", 3)
+    kitronik_air_quality.show("Humidity ---- :" + ("" + kitronik_air_quality.readHumidity()) + " %", 4)
+    kitronik_air_quality.show("IAQ Score --> " + ("" + kitronik_air_quality.getAirQualityScore()), 6)
+    kitronik_air_quality.show("IAQ %     --> " + ("" + kitronik_air_quality.getAirQualityPercent()), 7)
+    kitronik_air_quality.show("eCo2      -->  " + ("" + kitronik_air_quality.readeCO2()), 8)
     basic.pause(5000)
     kitronik_air_quality.clear()
 })
-input.onButtonPressed(Button.AB, function on_button_pressed_ab() {
+input.onButtonPressed(Button.AB, function () {
     kitronik_air_quality.sendAllData()
 })
-input.onButtonPressed(Button.B, function on_button_pressed_b() {
+input.onButtonPressed(Button.B, function () {
     kitronik_air_quality.clear()
     kitronik_air_quality.show("Logging ...")
-    //  set to 1 time just for debugging
+    // set to 1 time just for debugging
     for (let index = 0; index < 1; index++) {
         kitronik_air_quality.measureData()
         kitronik_air_quality.logData()
@@ -29,7 +29,7 @@ input.onButtonPressed(Button.B, function on_button_pressed_b() {
     basic.pause(2000)
     kitronik_air_quality.clear()
 })
-input.onGesture(Gesture.Shake, function on_gesture_shake() {
+input.onGesture(Gesture.Shake, function () {
     basic.showString("WARNING!")
     kitronik_air_quality.show("Erasing Memory", 4)
     kitronik_air_quality.eraseData()
@@ -42,9 +42,9 @@ let statusLEDs = kitronik_air_quality.createAirQualityZIPDisplay()
 statusLEDs.setBrightness(10)
 statusLEDs.setZipLedColor(0, kitronik_air_quality.colors(ZipLedColors.Blue))
 statusLEDs.show()
-basic.showString("" + ("" + input.lightLevel()))
+basic.showString("" + (input.lightLevel()))
 basic.clearScreen()
-basic.showString("Bonjour" + "Angie" + "il fait " + ("" + input.temperature()) + "C")
+basic.showString("Bonjour" + "Angie" + "il fait " + input.temperature() + "C")
 basic.clearScreen()
 basic.showString("A for Meteo")
 basic.clearScreen()
@@ -52,7 +52,7 @@ basic.showString("B for Logging Data")
 basic.clearScreen()
 basic.showString("A+B for Sending Data")
 basic.clearScreen()
-//  Date and Time are not really persistant and will be reseted to harcoded values on turn On
+// Date and Time are not really persistant and will be reseted to harcoded values on turn On
 kitronik_air_quality.setDate(1, 1, 0)
 kitronik_air_quality.setTime(0, 0, 0)
 statusLEDs.setZipLedColor(1, kitronik_air_quality.colors(ZipLedColors.White))
