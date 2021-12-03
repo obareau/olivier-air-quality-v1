@@ -1,4 +1,5 @@
 input.onButtonPressed(Button.A, function () {
+    basic.showString("" + input.temperature() + "C")
     kitronik_air_quality.clear()
     kitronik_air_quality.measureData()
     kitronik_air_quality.show("Angie's Meteo Board")
@@ -33,12 +34,24 @@ input.onGesture(Gesture.Shake, function () {
     basic.pause(2000)
     kitronik_air_quality.clear()
 })
+basic.showString("" + (input.lightLevel()))
+basic.clearScreen()
+basic.showString("Bonjour" + "Angie" + "il fait " + input.temperature() + "C")
+basic.clearScreen()
 basic.showString("A for Meteo")
+basic.clearScreen()
 basic.showString("B for Logging Data")
+basic.clearScreen()
 basic.showString("A+B for Sending Data")
 // Date and Time are not really persistant and will be reseted to harcoded values on turn On
-kitronik_air_quality.setDate(2, 12, 21)
-kitronik_air_quality.setTime(22, 30, 0)
+kitronik_air_quality.setDate(1, 1, 0)
+kitronik_air_quality.setTime(0, 0, 0)
 kitronik_air_quality.addProjectInfo("Report", "Meteo-Nice")
 kitronik_air_quality.setupGasSensor()
 kitronik_air_quality.calcBaselines()
+let statusLEDs = kitronik_air_quality.createAirQualityZIPDisplay()
+statusLEDs.setZipLedColor(0, kitronik_air_quality.colors(ZipLedColors.Violet))
+statusLEDs.show()
+basic.forever(function () {
+	
+})
