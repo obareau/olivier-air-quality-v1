@@ -52,6 +52,3 @@ kitronik_air_quality.calcBaselines()
 let statusLEDs = kitronik_air_quality.createAirQualityZIPDisplay()
 statusLEDs.setZipLedColor(0, kitronik_air_quality.colors(ZipLedColors.Violet))
 statusLEDs.show()
-basic.forever(function () {
-	
-})
