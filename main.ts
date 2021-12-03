@@ -38,6 +38,7 @@ input.onGesture(Gesture.Shake, function () {
     kitronik_air_quality.clear()
 })
 let statusLEDs = kitronik_air_quality.createAirQualityZIPDisplay()
+statusLEDs.setBrightness(10)
 statusLEDs.setZipLedColor(0, kitronik_air_quality.colors(ZipLedColors.Orange))
 statusLEDs.show()
 basic.showString("" + (input.lightLevel()))
