@@ -13,6 +13,7 @@ input.onButtonPressed(Button.AB, function () {
     kitronik_air_quality.sendAllData()
 })
 input.onButtonPressed(Button.B, function () {
+    kitronik_air_quality.clear()
     kitronik_air_quality.show("Logging ...")
     for (let index = 0; index < 25; index++) {
         kitronik_air_quality.measureData()
