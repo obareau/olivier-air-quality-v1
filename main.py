@@ -16,13 +16,34 @@ def on_button_pressed_a():
 input.on_button_pressed(Button.A, on_button_pressed_a)
 
 def on_button_pressed_ab():
-    kitronik_air_quality.clear()
-    kitronik_air_quality.show(kitronik_air_quality.read_date(), 1)
-    kitronik_air_quality.show(kitronik_air_quality.read_time(), 2)
+    kitronik_air_quality.send_all_data()
 input.on_button_pressed(Button.AB, on_button_pressed_ab)
+
+def on_button_pressed_b():
+    kitronik_air_quality.clear()
+    kitronik_air_quality.show("Logging ...")
+    for index in range(25):
+        kitronik_air_quality.measure_data()
+        kitronik_air_quality.log_data()
+        basic.pause(5000)
+    kitronik_air_quality.clear_line(1)
+    kitronik_air_quality.show("Logging Complete !", 2)
+    basic.pause(2000)
+    kitronik_air_quality.clear()
+input.on_button_pressed(Button.B, on_button_pressed_b)
+
+def on_gesture_shake():
+    kitronik_air_quality.show("Erasing Memory", 4)
+    kitronik_air_quality.erase_data()
+    kitronik_air_quality.clear_line(4)
+    kitronik_air_quality.show("Erase Complete", 4)
+    basic.pause(2000)
+    kitronik_air_quality.clear()
+input.on_gesture(Gesture.SHAKE, on_gesture_shake)
 
 kitronik_air_quality.set_date(2, 12, 21)
 kitronik_air_quality.set_time(22, 30, 0)
+kitronik_air_quality.add_project_info("Report", "Meteo-Nice")
 kitronik_air_quality.setup_gas_sensor()
 kitronik_air_quality.calc_baselines()
 
