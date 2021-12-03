@@ -1,5 +1,5 @@
 {
-    "name": "olivier-air-quality-V2",
+    "name": "olivier-air-quality-V3",
     "version": "1.0.0",
     "description": "",
     "dependencies": {
@@ -25,5 +25,5 @@
     "supportedTargets": [
         "microbit"
     ],
-    "preferredEditor": "pyprj"
+    "preferredEditor": "blocksprj"
 }
