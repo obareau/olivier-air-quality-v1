@@ -9,6 +9,8 @@ input.onButtonPressed(Button.A, function () {
     kitronik_air_quality.show("IAQ Score --> " + ("" + kitronik_air_quality.getAirQualityScore()), 6)
     kitronik_air_quality.show("IAQ %     --> " + ("" + kitronik_air_quality.getAirQualityPercent()), 7)
     kitronik_air_quality.show("eCo2      -->  " + ("" + kitronik_air_quality.readeCO2()), 8)
+    basic.pause(5000)
+    kitronik_air_quality.clear()
 })
 input.onButtonPressed(Button.AB, function () {
     kitronik_air_quality.sendAllData()
@@ -16,7 +18,8 @@ input.onButtonPressed(Button.AB, function () {
 input.onButtonPressed(Button.B, function () {
     kitronik_air_quality.clear()
     kitronik_air_quality.show("Logging ...")
-    for (let index = 0; index < 25; index++) {
+    // set to 1 time just for debugging
+    for (let index = 0; index < 1; index++) {
         kitronik_air_quality.measureData()
         kitronik_air_quality.logData()
         basic.pause(5000)
@@ -34,6 +37,9 @@ input.onGesture(Gesture.Shake, function () {
     basic.pause(2000)
     kitronik_air_quality.clear()
 })
+let statusLEDs = kitronik_air_quality.createAirQualityZIPDisplay()
+statusLEDs.setZipLedColor(0, kitronik_air_quality.colors(ZipLedColors.Orange))
+statusLEDs.show()
 basic.showString("" + (input.lightLevel()))
 basic.clearScreen()
 basic.showString("Bonjour" + "Angie" + "il fait " + input.temperature() + "C")
@@ -46,9 +52,10 @@ basic.showString("A+B for Sending Data")
 // Date and Time are not really persistant and will be reseted to harcoded values on turn On
 kitronik_air_quality.setDate(1, 1, 0)
 kitronik_air_quality.setTime(0, 0, 0)
+statusLEDs.setZipLedColor(1, kitronik_air_quality.colors(ZipLedColors.Green))
+statusLEDs.show()
 kitronik_air_quality.addProjectInfo("Report", "Meteo-Nice")
 kitronik_air_quality.setupGasSensor()
 kitronik_air_quality.calcBaselines()
-let statusLEDs = kitronik_air_quality.createAirQualityZIPDisplay()
-statusLEDs.setZipLedColor(0, kitronik_air_quality.colors(ZipLedColors.Violet))
+statusLEDs.setZipLedColor(2, kitronik_air_quality.colors(ZipLedColors.Green))
 statusLEDs.show()
